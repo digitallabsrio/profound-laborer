@@ -1,0 +1,7 @@
+reduce(String key, Iterator values): 
+// key: a word
+// values: a list of counts
+int result = 0;
+    for each v in values:
+      result += ParseInt(v);
+    Emit(AsString(result));

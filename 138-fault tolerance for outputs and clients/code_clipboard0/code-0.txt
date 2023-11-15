@@ -1,0 +1,8 @@
+def release():
+  if user != client: return
+  if waiting.empty() is True:
+    user = None
+  elif waiting.empty() is False:
+    head(waiting).send("ok")
+    user = head(waiting)
+    waiting = tail(waiting)

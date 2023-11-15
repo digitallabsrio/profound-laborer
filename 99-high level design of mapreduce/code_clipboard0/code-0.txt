@@ -1,0 +1,5 @@
+map(String key, String value): 
+// key: document name
+// value: document contents 
+for each word w in value:
+  EmitIntermediate(w, "1");

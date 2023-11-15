@@ -1,0 +1,43 @@
+# a simple helper that returns the head of a list
+def head(list_):  return(list_[0])
+# a simple helper that returns the tail of a list
+# tail includes everything in the list except the first element
+def tail(list_):  return(list_[1:])
+
+state_machine mutex:
+  # state variables described as initialization statements
+  user = None # will hold a client type variable
+  waiting = [] # a list of client type variable
+  time_granted = 0 # the time at which a client was given the resource
+
+  # commands described as functions
+  def acquire():
+    if user is None:
+      client.send("ok")
+      user = client
+      time_granted = os.current_time() # returns current time
+      schedule(mutex.timeout(time_granted), B) # B is the upper bound on 
+                                               # interval between acquire 
+                                               # and release
+    elif user not None:
+      waiting.append(client)
+  
+  def timeout(when_granted):
+    if when_granted != time_granted:
+      return
+    if waiting.empty() && (when_granted == time_granted):
+      user = None
+    if !(waiting.empty()) && (when_granted == time_granted):
+      head(waiting).send("ok")
+      user = head(waiting)
+      time_granted = os.current_time()
+      waiting = tail(waiting)
+
+  def release():
+    if user != client: return
+    if waiting.empty() is True:
+      user = None
+    elif waiting.empty() is False:
+      head(waiting).send("ok")
+      user = head(waiting)
+      waiting = tail(waiting)

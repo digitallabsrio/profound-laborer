@@ -1,0 +1,4 @@
+streams[] = Consumer.createMessageStreams("topic",1)
+for (M: streams[0]){
+  bytes = M.payload();
+  //perform operations on received bytes

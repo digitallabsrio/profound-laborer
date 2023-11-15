@@ -1,0 +1,27 @@
+# K is an array of sorted keys from our illustration from the previous lesson
+K = ["00001100",
+     "00010010",
+     "00100110",
+     "00111110",
+     "01000110",
+     "10000001",
+     "10101000",
+     "11001101",
+     "11101000",
+     "11111001"]
+# We may add our own array of keys by uncommenting the line below
+# and adding strings of keys. Keys must be of fixed length and sorted
+# K = ["00000000", ...]
+
+# construct(K) gives compact representation of trie with keys from K
+def construct(K):
+    if len(K) == 0 or len(K) == 1: return("!")
+    else:
+        # If a key's MSB is 0 then it belongs in the left subtrie L
+        L = [key[1:] for key in K if key[0] == "0"]
+        # If a key's MSB is 1 then it belongs in the right subtrie R
+        R = [key[1:] for key in K if key[0] == "1"]
+        
+        return str(len(L)) + construct(L) + construct(R)
+
+print(construct(K))

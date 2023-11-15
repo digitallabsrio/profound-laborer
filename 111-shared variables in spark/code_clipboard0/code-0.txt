@@ -1,0 +1,5 @@
+//Supplementing a list of words with numbers
+val data = Map("Python" -> 100, "C++" -> 150,      
+               "Scala" -> -1500, "Perl" -> 1000)
+//Broadcasting data to all workers
+val dataBroadcast = spark.sparkContext.broadcast(data)  

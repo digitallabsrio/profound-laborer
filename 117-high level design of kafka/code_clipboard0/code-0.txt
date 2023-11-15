@@ -1,0 +1,4 @@
+P = new Producer();
+M = new Message("Hello world".getBytes());
+S = new MessageSet(M);
+P.send("topic",S);

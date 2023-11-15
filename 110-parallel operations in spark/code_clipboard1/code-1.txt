@@ -1,0 +1,3 @@
+val rdd = spark.sparkContext.parallelize(Seq(("Human",2),("Lion",3),("Cat",1)))
+val otherRDD = spark.sparkContext.parallelize(Seq(("Human","Omnivore"),("Lion","Carnivore"),("Deer","Herbivore"),("Cat","Omnivore")))
+val newRDD = rdd.join(otherRDD)

@@ -1,0 +1,11 @@
+state_machine tally:
+  # state variables described as initialization statements
+  votes = [candidate.votes = 0 for candidate in candidates]
+
+  # commands described as functions
+  def cast_vote(choice):
+    votes[choice] += 1
+    if votes[choice] >= MAJ:
+      SYSTEM.send(choice)
+    else:
+      continue

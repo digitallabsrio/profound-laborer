@@ -1,0 +1,9 @@
+newZnode = create(path + "/read-", EPHEMERAL, SEQUENTIAL)
+childrenList = getChildren(path, false)
+do
+    if no write znodes lower than newZnode in childrenList
+        exit
+    newPath = write znode in childrenList ordered just before newZnode
+    if exists(newPath, true)
+        wait for event
+while true

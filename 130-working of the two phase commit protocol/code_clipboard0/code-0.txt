@@ -1,0 +1,21 @@
+-- Coordinator code
+
+function coordinator(transaction) {
+    send prepare request to all cohorts -- Phase 1 --
+    wait for responses from all cohorts until the timeout
+    if any cohort votes no or timesout: -- Phase 2 --
+        send abort message to all cohorts
+        wait for acknowledgments from all cohorts
+        if any cohort does not acknowledge in time limit:
+            retransmit the decision until it acknowledges 
+        end if
+    else: -- Got "OK" from all cohorts
+        write_in_log(commit)
+        send commit message to all cohorts
+        wait for acknowledgments from all cohorts
+        if any cohort does not acknowledge in time limit:
+            retransmit the decision until it acknowledges 
+        end if
+    end if
+    write_in_log(coordinator_completed)
+}

@@ -1,0 +1,8 @@
+newZnode = create(path + "/" + processName)
+exists(path + "/ready", true)
+newZnodeChild = create(newZnode, EPHEMERAL)
+childrenList = getChildren(path, false)
+if fewer children in childrenList than barrierThreshold
+  wait for watch event
+else 
+  create(path + "/ready", REGULAR)

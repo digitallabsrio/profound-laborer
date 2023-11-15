@@ -1,0 +1,16 @@
+d = DELAY_TIME
+
+def monitor:
+  while True:
+    val = sensor()
+    process_control.adjust(val)
+    delay(d)
+
+state_machine process_control:
+  # state variables described as initialization statements
+  q = real_number()
+
+  # commands described as functions
+  def adjust(sensor_val):
+    q = Foo(q, sensor_val)
+    actuator.send(q)

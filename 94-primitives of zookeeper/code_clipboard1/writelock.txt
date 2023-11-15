@@ -1,0 +1,9 @@
+newZnode = create(path + "/write-", EPHEMERAL, SEQUENTIAL)
+do
+    childrenList = getChildren(path, false)
+    if newZnode is lowest znode in children 
+        exit
+    newPath = znode in childrenList ordered just before newZnode
+    if exists(newPath, true) 
+        wait for event 
+while true

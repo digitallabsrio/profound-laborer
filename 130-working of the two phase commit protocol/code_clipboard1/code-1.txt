@@ -1,0 +1,24 @@
+-- Cohort code
+
+function cohort(transaction) {
+    wait for prepare request from coordinator -- phase 1 --
+    vote yes or no based on local checks
+    if vote = yes
+        write_in_log(agreed)
+        send vote to coordinator
+        wait for decision message from coordinator -- phase 2 --
+        if decision is commit:
+            commit the transaction
+            send acknowledgment to coordinator
+        else:
+            abort the transaction
+            send acknowledgment to coordinator
+        end if
+    end if
+    if vote = no
+        write_in_log(declined)
+        send vote to coordinator
+        abort the transaction
+        send acknowledgment to coordinator
+    end if
+}

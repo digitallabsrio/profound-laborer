@@ -1,0 +1,30 @@
+# K is a lookup key
+# T is the compact representation of a trie
+
+# lookup(K,T) gives the index of K in T
+def lookup(K, T):
+  (thead, ttail) = (T[0], T[1:])
+  if thead == "!":
+    return 0
+  else:
+    if K[0] == "0":
+      # Recurse into the left subtrie
+      return lookup(K[1:], ttail)
+    else:
+      # Skip the left subtrie
+      ttail = discard_subtrie(ttail)
+      # Recurse into the right subtrie
+      return int(thead) + lookup(K[1:], ttail)
+
+# discard 
+def discard_subtrie(T):
+  (thead, ttail) = (T[0], T[1:])
+  if thead == "!":
+    return ttail
+  else:
+    # Skip both subtries
+    ttail = discard_subtrie(ttail)
+    ttail = discard_subtrie(ttail)
+    return ttail
+
+print(lookup("01000110", "5421!!1!!!21!!1!1!!"))

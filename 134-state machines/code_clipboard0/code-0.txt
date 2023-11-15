@@ -1,0 +1,13 @@
+n = STORE_SIZE
+
+state_machine memory:
+  # state variables described as initialization statements
+  store = [str("") for i in range(n)]
+  # we have initialized store with empty strings
+
+  # commands described as functions
+  def read(loc):
+    return store[loc]
+  
+  def write(loc, value):
+    store[loc] = value

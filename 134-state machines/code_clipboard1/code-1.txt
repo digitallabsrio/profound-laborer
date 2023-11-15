@@ -1,0 +1,26 @@
+# a simple helper that returns the head of a list
+def head(list_):  return(list_[0])
+# a simple helper that returns the tail of a list
+# tail includes everything in the list except the first element
+def tail(list_):  return(list_[1:])
+
+state_machine mutex:
+  # state variables described as initialization statements
+  user = None # will hold a client type variable
+  waiting = [] # a list of client type variable
+
+  # commands described as functions
+  def acquire():
+    if user is None:
+      client.send("ok")
+      user = client
+    elif user not None:
+      waiting.append(client)
+
+  def release():
+    if waiting.empty() is True:
+      user = None
+    elif waiting.empty() is False:
+      head(waiting).send("ok")
+      user = head(waiting)
+      waiting = tail(waiting)

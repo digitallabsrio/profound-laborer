@@ -1,0 +1,24 @@
+CREATE SCHEMA PhotoApp;
+
+
+CREATE TABLE User {
+  required int64 user_id;
+  required string name;
+} PRIMARY KEY(user_id), ENTITY GROUP ROOT;
+
+
+CREATE TABLE Photo {
+  required int64 user_id;
+  required int32 photo_id;
+  required int64 time;
+  required string full_url;
+  optional string thumbnail_url;
+  repeated string tag;
+} PRIMARY KEY(user_id, photo_id), IN TABLE User,
+ENTITY GROUP KEY(user_id) REFERENCES User;
+
+CREATE LOCAL INDEX PhotosByTime
+  ON Photo(user_id, time);
+
+CREATE GLOBAL INDEX PhotosByTag
+  ON Photo(tag) STORING (thumbnail_url);

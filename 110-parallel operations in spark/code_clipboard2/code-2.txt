@@ -1,0 +1,2 @@
+val rdd = spark.sparkContext.parallelize(Seq(("Human",2),("Lion",1),("Human",1),("Lion",3),("Cat",1)))
+val newRDD = rdd.groupByKey()

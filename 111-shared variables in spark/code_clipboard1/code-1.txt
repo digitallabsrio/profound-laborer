@@ -1,0 +1,4 @@
+// Creating accumulator with initial value 0
+val accArray = sc.accumulator(0)
+// Adding up all elements of array in accArray
+sc.parallelize(array(10, 12, 13, 40)).foreach(x => accArray += x)

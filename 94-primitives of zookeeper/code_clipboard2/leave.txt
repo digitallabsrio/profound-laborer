@@ -1,0 +1,12 @@
+do
+  childrenList = getChildren(path, false)
+  if no children
+    exit
+  if processOne is only process node in childrenList
+    delete(newZnode) 
+    exit
+  if process is the lowest process node in childrenList
+    wait on highest process node in childrenList
+  else 
+    delete(newZnodeChild) # if still exists and wait on lowest process node in childrenList
+while true
